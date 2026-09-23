@@ -1,0 +1,52 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0f1117;
+  --surface:   #161920;
+  --surface2:  #1e2130;
+  --border:    #272b3d;
+  --muted:     #4a4f6a;
+  --text:      #e2e4ef;
+  --text-dim:  #7b80a0;
+  --accent:    #4f8ef7;
+  --success:   #3ecf8e;
+  --warning:   #f5a623;
+  --danger:    #f87171;
+  --radius:    10px;
+  --radius-sm: 6px;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* Pulse animation for running services */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* Spin for loading */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Fade in for log entries */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+scrollbar-width: thin;
+scrollbar-color: var(--border) transparent;
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }

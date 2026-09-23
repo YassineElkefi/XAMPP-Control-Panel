@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Generated frontend and Electron build output
+dist/
+dist-electron/
+
+# Packaged release artifacts
+*.dmg
+*.blockmap
+*.zip
+*.asar
+
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs and debug output
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Electron builder local files
+builder-effective-config.yaml
+
+# Code signing and notarization credentials
+*.p12
+*.pfx
+*.cer
+*.provisionprofile
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
