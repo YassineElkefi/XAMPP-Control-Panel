@@ -37,7 +37,7 @@
         }
       ]
     },
-    "files": ["dist/**/*", "dist-electron/**/*"],
+    "files": ["dist/renderer/**/*", "dist-electron/**/*"],
     "extraResources": [
       {
         "from": "scripts/setup-sudoers.sh",

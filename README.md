@@ -99,7 +99,7 @@ sudo rm /etc/sudoers.d/xampp-control
 npm run dev
 ```
 
-The release build creates one DMG for Apple silicon and one for Intel Macs. Distribution outside your own Mac should use a valid Developer ID certificate and Apple notarization so Gatekeeper accepts the app without manual overrides.
+The release build creates one DMG for Apple silicon and one for Intel Macs in `dist/`. The renderer is built separately under `dist/renderer/` so generated installers and app bundles are never included in later builds. Distribution outside your own Mac should use a valid Developer ID certificate and Apple notarization so Gatekeeper accepts the app without manual overrides.
 
 ---
 
