@@ -8,6 +8,10 @@ const XAMPP = '/Applications/XAMPP/xamppfiles/xampp'
 const SUDO = '/usr/bin/sudo'
 
 let permissionSetup: Promise<void> | undefined
+let mainWindow: BrowserWindow | null = null
+const hasSingleInstanceLock = app.requestSingleInstanceLock()
+
+if (!hasSingleInstanceLock) app.quit()
 
 function shellQuote(value: string): string {
   return `'${value.replace(/'/g, "'\\''")}'`
@@ -59,6 +63,11 @@ function createWindow() {
       nodeIntegration: false,
     },
   })
+  mainWindow = win
+
+  win.on('closed', () => {
+    if (mainWindow === win) mainWindow = null
+  })
 
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL)
@@ -67,10 +76,28 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(createWindow)
+function showMainWindow() {
+  if (!mainWindow || mainWindow.isDestroyed()) {
+    createWindow()
+  } else {
+    mainWindow.show()
+  }
+  if (process.platform === 'darwin') app.dock.show()
+}
+
+app.on('second-instance', showMainWindow)
+app.on('activate', showMainWindow)
+app.whenReady().then(() => {
+  if (!hasSingleInstanceLock) return
+  if (process.platform === 'darwin' && !app.isPackaged) {
+    app.dock.setIcon(path.join(app.getAppPath(), 'build/icon.png'))
+  }
+  createWindow()
+})
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
+  if (process.platform === 'darwin') app.dock.hide()
+  else app.quit()
 })
 
 // ── XAMPP command runner ──────────────────────────────────────────────────────
