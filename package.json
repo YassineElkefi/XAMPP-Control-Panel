@@ -1,6 +1,6 @@
 {
   "name": "xampp-control",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "XAMPP Control Panel for macOS",
   "main": "dist-electron/main.js",
   "scripts": {
